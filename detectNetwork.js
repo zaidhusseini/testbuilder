@@ -20,9 +20,12 @@ var detectNetwork = function(cardNumber) {
 
   } else if (( (cardNumber.length === 13) || (cardNumber.length === 16) || (cardNumber.length === 19)) && cardNumber.substr(0,1) === '4'){
   	return 'Visa'; 
-  } 
-  else if (cardNumber.length === 16 && (cardNumber.substr(0,2) === '51' || cardNumber.substr(0,2) === '52' || cardNumber.substr(0,2) === '53' || cardNumber.substr(0,2) === '54' || cardNumber.substr(0,2) === '55')){
+
+  } else if (cardNumber.length === 16 && (cardNumber.substr(0,2) === '51' || cardNumber.substr(0,2) === '52' || cardNumber.substr(0,2) === '53' || cardNumber.substr(0,2) === '54' || cardNumber.substr(0,2) === '55')){
   	return 'MasterCard';
+
+  } else if ((cardNumber.length === 16 || cardNumber.length === 19) && (cardNumber.substr(0,4) === '6011' || cardNumber.substr(0,3) === '644' || cardNumber.substr(0,3) === '645' || cardNumber.substr(0,3) === '646' || cardNumber.substr(0,3) === '647' || cardNumber.substr(0,3) === '648' || cardNumber.substr(0,3) === '649' ||  cardNumber.substr(0,2) === '65')){
+  	return 'Discover';
   }
 
 };
