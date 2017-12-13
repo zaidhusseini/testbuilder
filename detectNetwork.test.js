@@ -151,10 +151,25 @@ describe('Discover', function() {
   it('has a prefix of 6011 and a length of 19', function(){
     detectNetwork('6011345678901234111').should.equal('Discover');
   });
+  it('has a prefix of 644 qand a length of 16', function(){
+    detectNetwork('6441345678901234').should.equal('Discover');
+  });
+  it('has a prefix of 646 qand a length of 19', function(){
+    detectNetwork('6461345678901234123').should.equal('Discover');
+  });
 });
 
 describe('Maestro', function() {
   // Write full test coverage for the Maestro card
+  it('has a prefix of 5018 and a length of 12', function(){
+    detectNetwork('501834567890').should.equal('Maestro');
+  });
+  it('has a prefix of 5038 qand a length of 17', function(){
+    detectNetwork('50383456789012342').should.equal('Maestro');
+  });
+  it('has a prefix of 6304 qand a length of 15', function(){
+    detectNetwork('630434567890123').should.equal('Maestro');
+  });
 });
 
 describe('should support China UnionPay')

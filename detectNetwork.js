@@ -26,23 +26,9 @@ var detectNetwork = function(cardNumber) {
 
   } else if ((cardNumber.length === 16 || cardNumber.length === 19) && (cardNumber.substr(0,4) === '6011' || cardNumber.substr(0,3) === '644' || cardNumber.substr(0,3) === '645' || cardNumber.substr(0,3) === '646' || cardNumber.substr(0,3) === '647' || cardNumber.substr(0,3) === '648' || cardNumber.substr(0,3) === '649' ||  cardNumber.substr(0,2) === '65')){
   	return 'Discover';
+
+  } else if ((cardNumber.length === 12 || cardNumber.length === 13 || cardNumber.length === 14 || cardNumber.length === 15 || cardNumber.length === 16 || cardNumber.length === 17 || cardNumber.length === 18 || cardNumber.length === 19) && (cardNumber.substr(0,4) === '5018' || cardNumber.substr(0,4) === '5020' || cardNumber.substr(0,4) === '5038' || cardNumber.substr(0,4) === '6304' )){
+  	return 'Maestro';
   }
 
 };
-
-/*
-
-detectNetwork('38345678901234') Diners 
-detectNetwork('39345678901234') Diners
-detectNetwork('343456789012345') (American Express)
-detectNetwork('373456789012345') (American Express)
-detectNetwork('4123456789012') (Visa)
-detectNetwork('4123456789012345') (Visa)
-detectNetwork('4123456789012345678') (Visa)
-detectNetwork('5112345678901234') (MasterCard)
-detectNetwork('5212345678901234') (MasterCard)
-detectNetwork('5312345678901234') (MasterCard)
-detectNetwork('5412345678901234') (MasterCard)
-detectNetwork('5512345678901234') (MasterCard)
-
-*/
