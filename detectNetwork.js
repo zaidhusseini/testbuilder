@@ -32,6 +32,18 @@ function isChinaUnionPay(cardNumber){
       return true;
     }
   }
+
+  for (var i=624; i<=626; i++){
+    if (cardNumber.substr(0,3) === i.toString() && lengthSet.has(cardNumber.length)){
+      return true;
+    }
+  }
+
+  for (var i=6282; i<=6288; i++){
+    if (cardNumber.substr(0,4) === i.toString() && lengthSet.has(cardNumber.length)){
+      return true;
+    }
+  }
   
   return false;
 }
@@ -49,6 +61,9 @@ var detectNetwork = function(cardNumber) {
   } else if (cardNumber.length === 15 && (cardNumber.substr(0,2) === '34' || cardNumber.substr(0,2) === '37')){
   	return 'American Express';
 
+  } else if ((cardNumber.length === 16 || cardNumber.length === 18 || cardNumber.length === 19) && (cardNumber.substr(0,4) === '4903' || cardNumber.substr(0,4) === '4905' || cardNumber.substr(0,4) === '4911' || cardNumber.substr(0,4) === '4936' || cardNumber.substr(0,6) === '564182' || cardNumber.substr(0,6) === '633110' || cardNumber.substr(0,4) === '6333' ||  cardNumber.substr(0,4) === '6759')){
+    return 'Switch';
+    
   } else if (( (cardNumber.length === 13) || (cardNumber.length === 16) || (cardNumber.length === 19)) && cardNumber.substr(0,1) === '4'){
   	return 'Visa'; 
 
@@ -63,6 +78,7 @@ var detectNetwork = function(cardNumber) {
 
   } else if (isChinaUnionPay(cardNumber)){
     return 'China UnionPay';
+
   } 
 
 };
