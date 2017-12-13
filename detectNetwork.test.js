@@ -185,10 +185,10 @@ describe('Discover', function() {
   for(var prefix = 644; prefix <= 649; prefix++){
     (function(prefix) {
       it('has a prefix of ' + prefix + ' and a length of 16', function(){
-        detectNetwork(prefix.toString() + getRandomIntInclusive(1234567890000,9999999999999)).should.equal('Discover');
+        detectNetwork(prefix.toString() + getRandomNumOfCertainLength(13)).should.equal('Discover');
       });
       it('has a prefix of ' + prefix + ' and a length of 19', function(){
-        detectNetwork(prefix.toString() + getRandomIntInclusive(1234567890000000,9999999999999999)).should.equal('Discover');
+        detectNetwork(prefix.toString() + getRandomNumOfCertainLength(16)).should.equal('Discover');
       });
     })(prefix);
   }
@@ -211,33 +211,32 @@ describe('Maestro', function() {
   //Implementing loops to cycle through all test cases for Maestro
 
   for(var length = 12; length <= 19; length++){
-    (function(length) {
-
+   (function(length) {
       
-      it('has a prefix of ' + 5018 + ' and a length of ' + length, function(){        
+      it('has a prefix of 5018 and a length of ' + length, function(){        
         var prefix = '5018';
         detectNetwork(prefix + getRandomNumOfCertainLength(length - prefix.length)).should.equal('Maestro');
       });
 
       
-      it('has a prefix of ' + 5020 + ' and a length of ' + length, function(){
+      it('has a prefix of 5020 and a length of ' + length, function(){
         var prefix = '5020';
         detectNetwork(prefix + getRandomNumOfCertainLength(length - prefix.length)).should.equal('Maestro');
       });
 
       
-      it('has a prefix of ' + 5038 + ' and a length of ' + length, function(){
+      it('has a prefix of 5038 and a length of ' + length, function(){
         var prefix = '5038';
         detectNetwork(prefix + getRandomNumOfCertainLength(length - prefix.length)).should.equal('Maestro');
       });
 
       
-      it('has a prefix of ' + 6304 + ' and a length of ' + length, function(){
+      it('has a prefix of 6304 and a length of ' + length, function(){
         var prefix = '6304';
         detectNetwork(prefix + getRandomNumOfCertainLength(length - prefix.length)).should.equal('Maestro');
       });
 
-    })(length);
+   })(length);
   }
 
 });
@@ -245,9 +244,11 @@ describe('Maestro', function() {
 //Added ChinaUnion Pay tests
 
 describe('China UnionPay', function(){
-  for (var prefix = 622126; prefix <= 622925; prefix++){
-    for (var length = 16; length <= 19; length++){
-
+  
+  for (var length = 16; length <= 19; length++){
+     
+    //runs tests for first set of prefixes 
+    for (var prefix = 622126; prefix <= 622925; prefix++){
 
       (function(prefix,length){
 
@@ -256,13 +257,109 @@ describe('China UnionPay', function(){
           detectNetwork(prefix + cardSuffix).should.equal('China UnionPay');
         });
         
-    
+
       })(prefix, length);
     }
+
+    //runs tests for second set of prefixes 
+    for (var prefix = 624; prefix <= 626; prefix++){
+
+      (function(prefix,length){
+
+        var cardSuffix = getRandomNumOfCertainLength(length - prefix.toString().length);
+        it('has a prefix of ' + prefix + ' and a length of ' + length, function(){
+          detectNetwork(prefix + cardSuffix).should.equal('China UnionPay');
+        });
+        
+
+      })(prefix, length);
+    }
+   
+   //runs tests for third set of prefixes 
+   for (var prefix = 6282; prefix <= 6288; prefix++){
+
+      (function(prefix,length){
+
+        var cardSuffix = getRandomNumOfCertainLength(length - prefix.toString().length);
+        it('has a prefix of ' + prefix + ' and a length of ' + length, function(){
+          detectNetwork(prefix + cardSuffix).should.equal('China UnionPay');
+        });
+        
+
+      })(prefix, length);
+    }
+
   }
   
 
 });
 
 
-describe('should support Switch')
+describe('Switch', function(){
+
+  for (var i=0; i<3; i++){
+    (function(i){
+      if (i === 0){
+        var length = 16;
+
+      } else if (i === 1){
+        var length = 18;
+
+      } else if (i === 2){
+        var length = 19;
+
+      }
+
+     
+     it('has a prefix of 4903 and a length of ' + length, function(){
+       var prefix = '4903'; 
+       var cardSuffix = getRandomNumOfCertainLength(length - prefix.length);
+       detectNetwork(prefix + cardSuffix).should.equal('Switch');
+     });
+
+     it('has a prefix of 4905 and a length of ' + length, function(){
+       var prefix = '4905'; 
+       var cardSuffix = getRandomNumOfCertainLength(length - prefix.length);
+       detectNetwork(prefix + cardSuffix).should.equal('Switch');
+     });
+
+     it('has a prefix of 4911 and a length of ' + length, function(){
+       var prefix = '4911'; 
+       var cardSuffix = getRandomNumOfCertainLength(length - prefix.length);
+       detectNetwork(prefix + cardSuffix).should.equal('Switch');
+     });
+
+     it('has a prefix of 4936 and a length of ' + length, function(){
+       var prefix = '4936'; 
+       var cardSuffix = getRandomNumOfCertainLength(length - prefix.length);
+       detectNetwork(prefix + cardSuffix).should.equal('Switch');
+     });
+
+      it('has a prefix of 564182 and a length of ' + length, function(){
+       var prefix = '564182'; 
+       var cardSuffix = getRandomNumOfCertainLength(length - prefix.length);
+       detectNetwork(prefix + cardSuffix).should.equal('Switch');
+     });
+
+      it('has a prefix of 633110 and a length of ' + length, function(){
+       var prefix = '633110'; 
+       var cardSuffix = getRandomNumOfCertainLength(length - prefix.length);
+       detectNetwork(prefix + cardSuffix).should.equal('Switch');
+     });
+
+      it('has a prefix of 6333 and a length of ' + length, function(){
+       var prefix = '6333'; 
+       var cardSuffix = getRandomNumOfCertainLength(length - prefix.length);
+       detectNetwork(prefix + cardSuffix).should.equal('Switch');
+     });
+
+      it('has a prefix of 6759 and a length of ' + length, function(){
+       var prefix = '6759'; 
+       var cardSuffix = getRandomNumOfCertainLength(length - prefix.length);
+       detectNetwork(prefix + cardSuffix).should.equal('Switch');
+     });
+
+    })(i);
+  }
+
+});
