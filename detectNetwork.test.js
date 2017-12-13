@@ -242,5 +242,27 @@ describe('Maestro', function() {
 
 });
 
-describe('should support China UnionPay')
+//Added ChinaUnion Pay tests
+
+describe('China UnionPay', function(){
+  for (var prefix = 622126; prefix <= 622925; prefix++){
+    for (var length = 16; length <= 19; length++){
+
+
+      (function(prefix,length){
+
+        var cardSuffix = getRandomNumOfCertainLength(length - prefix.toString().length);
+        it('has a prefix of ' + prefix + ' and a length of ' + length, function(){
+          detectNetwork(prefix + cardSuffix).should.equal('China UnionPay');
+        });
+        
+    
+      })(prefix, length);
+    }
+  }
+  
+
+});
+
+
 describe('should support Switch')

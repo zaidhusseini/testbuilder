@@ -26,13 +26,13 @@ function getRandomNumOfCertainLength(length){
 }
 
 function isChinaUnionPay(cardNumber){
-  var lengthSet = new Set();
-  lengthSet.add(16,17,18,19);
+  var lengthSet = new Set([16,17,18,19]);
   for (var i=622126; i<=622925; i++){
     if (cardNumber.substr(0,6) === i.toString() && lengthSet.has(cardNumber.length)){
       return true;
     }
   }
+  
   return false;
 }
 
@@ -63,6 +63,6 @@ var detectNetwork = function(cardNumber) {
 
   } else if (isChinaUnionPay(cardNumber)){
     return 'China UnionPay';
-  }
+  } 
 
 };
