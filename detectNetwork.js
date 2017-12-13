@@ -6,6 +6,37 @@
 // There are two indicators:
 //   1. The first few numbers (called the prefix)
 //   2. The number of digits in the number (called the length)
+
+function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
+}
+
+// Generates a random number of certain length
+
+function getRandomNumOfCertainLength(length){
+  var num = "";
+  
+  for (var i=0; i<length; i++){
+    num += getRandomIntInclusive(0,9);
+  }
+
+  return num;
+}
+
+function isChinaUnionPay(cardNumber){
+  var lengthSet = new Set();
+  lengthSet.add(16,17,18,19);
+  for (var i=622126; i<=622925; i++){
+    if (cardNumber.substr(0,6) === i.toString() && lengthSet.has(cardNumber.length)){
+      return true;
+    }
+  }
+  return false;
+}
+
+
 var detectNetwork = function(cardNumber) {
   // Note: `cardNumber` will always be a string
   // The Diner's Club network always starts with a 38 or 39 and is 14 digits long
@@ -29,6 +60,9 @@ var detectNetwork = function(cardNumber) {
 
   } else if ((cardNumber.length === 12 || cardNumber.length === 13 || cardNumber.length === 14 || cardNumber.length === 15 || cardNumber.length === 16 || cardNumber.length === 17 || cardNumber.length === 18 || cardNumber.length === 19) && (cardNumber.substr(0,4) === '5018' || cardNumber.substr(0,4) === '5020' || cardNumber.substr(0,4) === '5038' || cardNumber.substr(0,4) === '6304' )){
   	return 'Maestro';
+
+  } else if (isChinaUnionPay(cardNumber)){
+    return 'China UnionPay';
   }
 
 };
